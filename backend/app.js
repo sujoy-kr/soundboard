@@ -1,7 +1,9 @@
 const express = require('express'),
     helmet = require('helmet'),
     cors = require('cors'),
-    morgan = require('morgan')
+    morgan = require('morgan'),
+    mongoose = require('mongoose'),
+    path = require('path')
 
 const config = require('./utils/config')
 
@@ -13,8 +15,24 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+// connect to mongodb
+mongoose
+    .connect(config.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        console.log('MongoDB connected')
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+
 // all routes
 app.use(require('./routes'))
+
+// serve static files
+app.use('/api/audios', express.static(path.join(__dirname, '/audios')))
 
 const isProduction = config.NODE_ENV === 'production'
 
