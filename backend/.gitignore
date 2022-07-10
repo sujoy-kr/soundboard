@@ -133,3 +133,4 @@ dist
 # custom by me
 .idea
 audios
+.env
