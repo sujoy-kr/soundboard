@@ -9,8 +9,9 @@ const config = require('./utils/config')
 
 const app = express()
 
-app.use(helmet())
+// allow cors for all origins
 app.use(cors())
+
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

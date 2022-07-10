@@ -1,10 +1,23 @@
 import AddSound from '../components/AddSound/AddSound'
+import MySounds from '../components/MySounds/MySounds'
+import { getSounds } from '../services/sounds'
 
-export default function Home() {
+export default function Home({ sounds }) {
+    console.log(sounds)
     return (
         <>
             <AddSound />
-            <h2>Your sounds</h2>
+            <MySounds sounds={sounds} />
         </>
     )
+}
+
+// fetch sounds with getServerSideProps
+export async function getServerSideProps() {
+    const sounds = await getSounds()
+    return {
+        props: {
+            sounds,
+        },
+    }
 }
