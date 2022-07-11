@@ -2,38 +2,29 @@ import React from 'react'
 import styles from './AddSoundForm.module.css'
 import Button from '../shared/Button/Button'
 import InputText from '../shared/InputText/InputText'
+const fs = require('fs').promises
+import { postSound } from '../../services/sounds'
 
 const AddSoundForm = () => {
     const handleFormSubmission = async (e) => {
+        // send form data to server
         e.preventDefault()
-        const formData = new FormData(e.target)
-        const name = formData.get('name')
-        const file = formData.get('file')
+        const formData = new FormData()
+        formData.append('file', e.target.file.files[0])
+        formData.append('name', e.target.name.value)
 
-        const sound = {
-            name,
-            file,
-        }
-
-        const response = await fetch('/api/sound', {
-            method: 'POST',
-            body: JSON.stringify(sound),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        const data = await response.json()
-        console.log(data)
+        // send form data to server
+        await postSound(formData)
     }
 
     return (
         <form id={styles.AddSoundForm} onSubmit={handleFormSubmission}>
-            <InputText placeholder='Sound name' type='text' name='soundName' />
+            <InputText placeholder='Sound name' type='text' name='name' />
             <input
                 required
                 className={styles.formInput}
                 type='file'
-                name='soundFile'
+                name='file'
             />
             <Button content={'Add sound'} submit={true} />
             <Button content={'Cancel'} whereTo={'/'} error={true} />

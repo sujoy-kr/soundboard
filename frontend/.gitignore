@@ -33,3 +33,4 @@ yarn-error.log*
 
 # custom by me
 .env
+.swc

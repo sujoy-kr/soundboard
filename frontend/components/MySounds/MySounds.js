@@ -11,7 +11,7 @@ const MySounds = ({ sounds }) => {
                     return (
                         <Sound
                             key={sound.id}
-                            name={`sound.name (${i + 1})`}
+                            name={`${sound.name} (${i + 1})`}
                             src={`http://localhost:3001/api/${sound.file}`}
                         />
                     )
