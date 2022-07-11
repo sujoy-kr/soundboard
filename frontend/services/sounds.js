@@ -1,9 +1,8 @@
-const Axios = require('axios')
-const config = require('../config/config')
-const url = config.API
+import Axios from 'axios'
+import { API } from '../config/config'
 
 const axios = Axios.create({
-    baseURL: url,
+    baseURL: API,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -18,7 +17,7 @@ const getSounds = async () => {
 // post a sound
 const postSound = async (formData) => {
     try {
-        await axios.post(`http://localhost:3001/api/sound`, formData, {
+        await axios.post('/sound', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

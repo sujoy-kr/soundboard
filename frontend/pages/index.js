@@ -3,7 +3,6 @@ import MySounds from '../components/MySounds/MySounds'
 import { getSounds } from '../services/sounds'
 
 export default function Home({ sounds }) {
-    console.log(sounds)
     return (
         <>
             <AddSound />

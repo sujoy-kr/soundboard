@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './AddSoundForm.module.css'
 import Button from '../shared/Button/Button'
 import InputText from '../shared/InputText/InputText'
-const fs = require('fs').promises
 import { postSound } from '../../services/sounds'
 
 const AddSoundForm = () => {

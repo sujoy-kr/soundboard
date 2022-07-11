@@ -12,7 +12,7 @@ const MySounds = ({ sounds }) => {
                         <Sound
                             key={sound.id}
                             name={`${sound.name} (${i + 1})`}
-                            src={`http://localhost:3001/api/${sound.file}`}
+                            src={`${API}/${sound.file}`}
                         />
                     )
                 })}
