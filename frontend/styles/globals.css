@@ -15,7 +15,8 @@ body {
   margin: 0;
   text-align: center;
   font-size: 20px;
-  background-image: linear-gradient(to right, #2B2F42, #373C58);
+  /* background-image: linear-gradient(to right, #2B2F42, #373C58); */
+  background-color: #2B2F42;
 }
 
 body * {

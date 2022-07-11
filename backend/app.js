@@ -35,6 +35,9 @@ mongoose
 // all routes
 app.use(require('./routes'))
 
+// passport config
+require('./utils/passport')
+
 // serve static files
 app.use('/api/audios', express.static(path.join(__dirname, '/audios')))
 

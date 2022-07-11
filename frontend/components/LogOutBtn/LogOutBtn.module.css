@@ -1,0 +1,16 @@
+.LogOutBtn {
+    padding: 5px;
+    width: 300px;
+    border: none;
+    color: #fff;
+    border: none;
+    margin: 0 auto;
+    display: block;
+    padding: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 2px;
+    background-color: #c84446;
+    margin-top: 20px;
+}

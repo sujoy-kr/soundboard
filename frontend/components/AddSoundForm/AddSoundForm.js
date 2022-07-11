@@ -4,7 +4,7 @@ import Button from '../shared/Button/Button'
 import InputText from '../shared/InputText/InputText'
 import { postSound } from '../../services/sounds'
 
-const AddSoundForm = () => {
+const AddSoundForm = ({ user }) => {
     const handleFormSubmission = async (e) => {
         // send form data to server
         e.preventDefault()
@@ -13,7 +13,7 @@ const AddSoundForm = () => {
         formData.append('name', e.target.name.value)
 
         // send form data to server
-        await postSound(formData)
+        await postSound(formData, user.token)
     }
 
     return (

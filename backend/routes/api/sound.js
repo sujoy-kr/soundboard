@@ -1,9 +1,17 @@
 const router = require('express').Router()
 const soundController = require('../../controllers/soundController')
 const multerMiddleware = require('../../middlewares/multerMiddleware')
+const extractToken = require('../../middlewares/extractToken')
+const auth = require('../auth')
 
-router.get('/', soundController.getAllSounds)
+router.get('/', auth.required, extractToken, soundController.getAllSounds)
 
-router.post('/', multerMiddleware, soundController.addSound)
+router.post(
+    '/',
+    auth.required,
+    extractToken,
+    multerMiddleware,
+    soundController.addSound
+)
 
 module.exports = router
