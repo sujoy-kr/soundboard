@@ -4,6 +4,6 @@ const multerMiddleware = require('../../middlewares/multerMiddleware')
 
 router.get('/', soundController.getAllSounds)
 
-router.post('/', multerMiddleware.single('file'), soundController.addSound)
+router.post('/', multerMiddleware, soundController.addSound)
 
 module.exports = router
