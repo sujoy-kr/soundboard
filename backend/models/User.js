@@ -3,6 +3,10 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { JWT_EXPIRES, SALT_ROUND } = require('../utils/config')
 
+const arrayLimit = (val) => {
+    return val.length <= 10
+}
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -17,12 +21,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    sounds: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Sound',
-        },
-    ],
+    sounds: {
+        type: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Sound',
+            },
+        ],
+        validate: [arrayLimit, 'You can add up to 10 sounds.'],
+    },
 })
 
 // hash password
