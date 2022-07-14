@@ -21,18 +21,14 @@ const getSounds = async (token) => {
 
 // post a sound with token
 const postSound = async (formData, token) => {
-    try {
-        await axios.post('/sound', formData, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data',
-            },
-        })
+    const response = await axios.post('/sound', formData, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+        },
+    })
 
-        window.location.href = '/'
-    } catch (err) {
-        alert(err.message)
-    }
+    return response.data
 }
 
 module.exports = {
