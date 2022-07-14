@@ -1,8 +1,12 @@
 import Button from '../shared/Button/Button'
 import InputText from '../shared/InputText/InputText'
 import { signup } from '../../services/users'
+import ErrorMessage from '../shared/ErrorMessage/ErrorMessage'
+import { useState } from 'react'
 
 const RegisterForm = () => {
+    const [errorMessage, setErrorMessage] = useState(null)
+
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         const name = e.target.name.value
@@ -24,19 +28,31 @@ const RegisterForm = () => {
                 window.location.href = '/'
             } catch (error) {
                 if (error.response.status === 401) {
-                    alert('User already exists')
+                    setInterval(() => {
+                        setErrorMessage(null)
+                    }, 5000)
+                    setErrorMessage(
+                        'Username already exists. Choose a different one.'
+                    )
                 }
             }
         }
     }
 
     return (
-        <form onSubmit={handleFormSubmit}>
-            <InputText placeholder='name' type='text' name='name' />
-            <InputText placeholder='Username' type='text' name='username' />
-            <InputText placeholder='Password' type='password' name='password' />
-            <Button content={'Register'} submit={true} />
-        </form>
+        <>
+            <ErrorMessage message={errorMessage} />
+            <form onSubmit={handleFormSubmit}>
+                <InputText placeholder='name' type='text' name='name' />
+                <InputText placeholder='Username' type='text' name='username' />
+                <InputText
+                    placeholder='Password'
+                    type='password'
+                    name='password'
+                />
+                <Button content={'Register'} submit={true} />
+            </form>
+        </>
     )
 }
 

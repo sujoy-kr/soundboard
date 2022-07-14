@@ -1,8 +1,12 @@
 import Button from '../shared/Button/Button'
 import InputText from '../shared/InputText/InputText'
 import { login } from '../../services/users'
+import ErrorMessage from '../shared/ErrorMessage/ErrorMessage'
+import { useState } from 'react'
 
 const LoginForm = () => {
+    const [errorMessage, setErrorMessage] = useState(null)
+
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         const username = e.target.username.value
@@ -22,18 +26,28 @@ const LoginForm = () => {
                 window.location.href = '/'
             } catch (error) {
                 if (error.response.status === 401) {
-                    alert('Invalid username or password')
+                    setInterval(() => {
+                        setErrorMessage(null)
+                    }, 5000)
+                    setErrorMessage('Invalid username or password.')
                 }
             }
         }
     }
 
     return (
-        <form onSubmit={handleFormSubmit}>
-            <InputText placeholder='Username' type='text' name='username' />
-            <InputText placeholder='Password' type='password' name='password' />
-            <Button content={'Login'} submit={true} />
-        </form>
+        <>
+            <ErrorMessage message={errorMessage} />
+            <form onSubmit={handleFormSubmit}>
+                <InputText placeholder='Username' type='text' name='username' />
+                <InputText
+                    placeholder='Password'
+                    type='password'
+                    name='password'
+                />
+                <Button content={'Login'} submit={true} />
+            </form>
+        </>
     )
 }
 

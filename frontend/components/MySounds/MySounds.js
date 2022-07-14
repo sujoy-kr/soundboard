@@ -11,6 +11,7 @@ const MySounds = ({ sounds }) => {
                     return (
                         <Sound
                             key={sound.id}
+                            playKey={i}
                             name={`${i} ${sound.name}`}
                             src={`${API}/${sound.file}`}
                         />
