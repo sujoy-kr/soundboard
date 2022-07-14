@@ -11,4 +11,9 @@
     cursor: pointer;
     font-weight: bold;
     border-radius: 2px;
+    transition: 0.2s ease;
+}
+
+.button:hover {
+    filter: drop-shadow(5px 5px 0px #fff);
 }

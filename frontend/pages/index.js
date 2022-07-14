@@ -28,9 +28,10 @@ export default function Home({}) {
         <>
             {user && <p>Welcome, {user}.</p>}
             <p>
-                You can add up to 10 sounds. You can play them by pressing 0 - 9
-                keys on your keyboard.
+                You can add up to 10 sounds and play them by pressing 0 - 9 on
+                your keyboard.
             </p>
+            <br />
             {sounds.length <= 9 && <AddSound />}
             <LogOutBtn />
             {sounds && <MySounds sounds={sounds} />}
